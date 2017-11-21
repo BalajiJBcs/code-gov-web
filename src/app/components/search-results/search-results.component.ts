@@ -54,7 +54,13 @@ export class SearchResultsComponent {
     this.filterForm = formBuilder.group({
       languages: {},
       licenses: {},
+      usageTypes: {},
     });
+
+    this.filterForm.setControl('usageTypes', this.formBuilder.group({
+      openSource: false,
+      governmentWideReuse: false,
+    }));
 
     this.filterForm.valueChanges.subscribe(data => {
       this.filteredResults = this.sortResults(this.filterResults(this.results));
@@ -123,6 +129,7 @@ export class SearchResultsComponent {
   filterResults(results) {
     const filteredLanguages = Object.keys(this.filterForm.value.languages).filter(language => this.filterForm.value.languages[language]);
     const filteredLicenses = Object.keys(this.filterForm.value.licenses).filter(license => this.filterForm.value.licenses[license]);
+    const filteredUsageTypes = Object.keys(this.filterForm.value.usageTypes).filter(usageType => this.filterForm.value.usageTypes[usageType]);
 
     return results.filter(result => {
       if (filteredLanguages.length > 0) {
@@ -138,6 +145,16 @@ export class SearchResultsComponent {
       if (result.permissions.licenses && filteredLicenses.length > 0) {
         if (Array.isArray(result.permissions.licenses)) {
           return filteredLicenses.every(l => result.permissions.licenses.map(license => license.name).includes(l));
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    }).filter(result => {
+      if (result.permissions.usageType && filteredUsageTypes.length > 0) {
+        if (result.permissions.usageType) {
+          return filteredUsageTypes.every(ut => result.permissions.usageType === ut);
         } else {
           return false;
         }

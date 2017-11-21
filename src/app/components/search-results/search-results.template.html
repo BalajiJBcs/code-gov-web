@@ -61,12 +61,12 @@
           <ul class="search-filter usa-unstyled-list">
             <li>
               <h5>Usage Type</h5>
-              <ul class="usa-unstyled-list">
+              <ul class="usa-unstyled-list" [formGroup]="filterForm.controls.usageTypes">
                 <li>
-                  <input id="usage-type-government-wide-reuse" name="usage-type" type="checkbox" value="government-wide-reuse" /><label for="usage-type-government-wide-reuse"><span>Government-Wide Reuse</span></label>
+                  <input id="usage-type-government-wide-reuse" name="usageType" type="checkbox" value="government-wide-reuse" formControlName="governmentWideReuse" /><label for="usage-type-government-wide-reuse"><span>Government-Wide Reuse</span></label>
                 </li>
                 <li>
-                  <input id="usage-type-open-source" name="usage-type" type="checkbox" value="open-source" /><label for="usage-type-open-source"><span>Open Source</span></label>
+                  <input id="usage-type-open-source" name="usageType" type="checkbox" value="open-source" formControlName="openSource" /><label for="usage-type-open-source"><span>Open Source</span></label>
                 </li>
               </ul>
             </li>
