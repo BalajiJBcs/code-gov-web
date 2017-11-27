@@ -26,7 +26,7 @@ class TestComponentWrapper {
   };
 }
 
-fdescribe('RepoListItemComponent', () => {
+describe('RepoListItemComponent', () => {
   let component: RepoListItemComponent;
   let fixture: ComponentFixture<TestComponentWrapper>;
 
