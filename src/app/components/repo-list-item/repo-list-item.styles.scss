@@ -11,6 +11,17 @@
   a {
     color: $brand-teal;
   }
+
+  &.card {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    padding-bottom: 3rem;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 
 h3 {
@@ -29,9 +40,14 @@ p {
 .repo-features {
   background-color: $color-cool-blue-lightest;
   color: $brand-blue-dark;
+  display: none;
   font-size: 0.8em;
   margin-bottom: 1rem;
   padding: 0.7rem 1rem;
+
+  @media screen and (min-width: $small-screen) {
+    display: block;
+  }
 
   li {
     display: inline-block;

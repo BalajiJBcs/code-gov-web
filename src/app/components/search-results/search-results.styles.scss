@@ -54,7 +54,21 @@ h3 {
   }
 
   .search-meta-section {
-    float: right;
+    clear: both;
+    float: left;
+
+    @media screen and (min-width: $medium-screen) {
+      clear: none;
+      float: right;
+    }
+
+    .page-size-field {
+      display: none;
+
+      @media screen and (min-width: $large-screen) {
+        display: inline-block;
+      } 
+    }
 
     label,
     p,
@@ -149,6 +163,7 @@ h3 {
 }
 
 .repos-count {
+  float: left;
   font-size: 1.1em;
   font-weight: bold;
 }

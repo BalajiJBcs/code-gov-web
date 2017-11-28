@@ -6,8 +6,10 @@
 
 <div *ngIf="!isLoading" class="repo-list">
   <div *ngIf="hasRepos()" class="repos-container">
-    <p *ngIf="results.length === 0" class="repo-list-summary">No results found.</p>
-    <p *ngIf="results.length > 0" class="repo-list-summary">Results <strong>{{ getMinPageIndex() }}-{{ getMaxPageIndex() }}</strong> of <strong>{{ results.length }}</strong></p>
+    <div class="repo-list-summary-wrapper">
+      <p *ngIf="results.length === 0" class="repo-list-summary">No results found.</p>
+      <p *ngIf="results.length > 0" class="repo-list-summary">Results <strong>{{ getMinPageIndex() }}-{{ getMaxPageIndex() }}</strong> of <strong>{{ results.length }}</strong></p>
+    </div>
     <pagination-template #p="paginationApi" (pageChange)="currentPage = $event">
 
       <ul class="ngx-pagination usa-unstyled-list">
@@ -32,8 +34,22 @@
       </ul>
 
     </pagination-template>
-    <!-- <pagination-controls (pageChange)="currentPage = $event"></pagination-controls> -->
-    <ul class="repos-list usa-unstyled-list">
+    <ul class="repos-list repos-list--infinite-scrolled usa-unstyled-list"		 
+        infinite-scroll		      
+        [infiniteScrollDistance]="500"
+        [infiniteScrollThrottle]="500"
+        (scrolled)="onScroll()">
+      <li *ngFor="let result of loadedResults" class="repo">
+        <div *ngIf="result.agency;then repoListItem else agencyListItem"></div>
+        <ng-template #repoListItem>
+          <repo-list-item [repo]="result"></repo-list-item>
+        </ng-template>
+        <ng-template #agencyListItem>
+          <agency-list-item [agency]="result"></agency-list-item>
+        </ng-template>
+      </li>
+    </ul>
+    <ul class="repos-list repos-list--paged usa-unstyled-list">
       <li *ngFor="let result of results | paginate: { itemsPerPage: pageSize, currentPage: currentPage }" class="repo">
         <div *ngIf="result.agency;then repoListItem else agencyListItem"></div>
         <ng-template #repoListItem>
@@ -44,9 +60,6 @@
         </ng-template>
       </li>
     </ul>
-    <button *ngIf="showLoadMore" (click)="loadMore()" class="load-more-button">
-      Load More Repos
-    </button>
   </div>
 
   <div *ngIf="!hasRepos()" class="no-repos">

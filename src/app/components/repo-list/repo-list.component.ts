@@ -14,11 +14,13 @@ import { SearchService } from '../../services/search';
 })
 
 export class RepoListComponent {
-  @Input() private results = [];
+  private _results = [];
   @Input() private pageSize = 10;
   private currentPage = 1;
   private subscription: Subscription;
   private isLoading = true;
+  private loadedResults = [];
+  private PAGE_SIZE = 10;
 
   /**
    * Constructs a RepoListComponent.
@@ -46,6 +48,18 @@ export class RepoListComponent {
     this.subscription.unsubscribe();
   }
 
+  get results(): Array<any> {
+    // transform value for display
+    return this._results;
+  }
+  
+  @Input()
+  set results(results: Array<any>) {
+    this.loadedResults = results.slice(0, this.PAGE_SIZE);
+
+    this._results = results;
+  }
+
   /**
    * When the list has some repositories.
    *
@@ -67,5 +81,10 @@ export class RepoListComponent {
    */
   getMaxPageIndex() {
     return Math.min((this.currentPage - 1) * this.pageSize + this.pageSize, this.results.length);
+  }
+
+  onScroll() {
+    console.log('scrolling');
+    this.loadedResults = this.results.slice(0, this.loadedResults.length + this.PAGE_SIZE);
   }
 }
