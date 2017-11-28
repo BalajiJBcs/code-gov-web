@@ -8,13 +8,6 @@
       <li>Search Results</li>
     </ul>
   </div>
-  <!-- <div class="search-container">
-    <div class="usa-grid">
-      <div class="search-col">
-        <repos-search [queryValue]="queryValue" buttonClasses="button--primary"></repos-search>
-      </div>
-    </div>
-  </div> -->
   <div class="search-results-header usa-grid">
     <h3 class="repos-count">
       We found {{ total }} {{ "Repositories" | pluralize : reposTotal }} for "{{ queryValue }}"
@@ -38,7 +31,8 @@
     </form>
   </div>
   <div class="usa-grid">
-    <div class="search-filter-section">
+    <!-- TODO: Add this section back in once we have better data quality -->
+    <!-- <div class="search-filter-section">
       <h4>Filter</h4>
       <form class="search-filters" [formGroup]="filterForm">
         <fieldset class="usa-fieldset-inputs">
@@ -73,7 +67,7 @@
           </ul>
         </fieldset>
       </form>
-    </div>
+    </div> -->
     <div class="search-results-section">
       <repo-list [queryValue]="queryValue" [results]="filteredResults" [pageSize]="pageSize"></repo-list>
     </div>

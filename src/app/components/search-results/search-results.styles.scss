@@ -54,7 +54,6 @@ h3 {
   }
 
   .search-meta-section {
-    display: inline-block;
     float: right;
 
     label,
@@ -136,13 +135,7 @@ h3 {
 }
 
 .search-results-section {
-  @include span-columns(9);
-}
-
-.search-col {
-  @media screen and (min-width: $medium-screen) {
-    @include span-columns(9);
-  }
+  @include span-columns(12);
 }
 
 .load-more-button {
