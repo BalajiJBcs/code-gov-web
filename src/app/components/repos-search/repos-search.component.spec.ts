@@ -17,8 +17,14 @@ import { TermService } from '../../services/term';
 
 class MockRouter {
   url: string;
+  routerState: any;
+  events: Observable<any>;
   constructor() {
     this.url = '/explore-code/';
+    this.routerState = {
+      root: '/'
+    };
+    this.events = Observable.of(null);
   }
 
   navigateByUrl() {

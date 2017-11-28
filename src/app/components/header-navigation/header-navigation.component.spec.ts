@@ -21,11 +21,11 @@ describe('HeaderNavigationComponent', () => {
             RouterModule.forRoot([])
           ],
           declarations: [
-            MobileService,
             HeaderNavigationComponent,
           ],
           providers: [
             { provide: APP_BASE_HREF, useValue: '/' },
+            MobileService,
           ],
           schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
         });
