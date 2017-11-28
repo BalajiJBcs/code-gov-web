@@ -36,7 +36,7 @@ if (helpers.hasProcessFlag('github-stag')) {
 
 } else if (helpers.hasProcessFlag('federalist-dev')){
   
-  BASEURL = '/preview/presidential-innovation-fellows/code-gov-web/';
+  BASEURL = '/preview/gsa/code-gov-web/';
   gtmAuth = 'GTM-M9L9Q5';
   GIT_BRANCH_NAME = 'federalist-dev';
 }
