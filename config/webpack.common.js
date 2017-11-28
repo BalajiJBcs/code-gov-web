@@ -230,7 +230,7 @@ module.exports = function (options) {
         {
           test: /\.scss$/,
           exclude: [ /node_modules/, /src\/styles/],
-          loader: 'raw-loader!postcss-loader!resolve-url-loader!sass-loader?sourceMap',
+          loader: 'raw-loader!postcss-loader!sass-loader?sourceMap',
         },
         {
           test: /\.scss$/,
